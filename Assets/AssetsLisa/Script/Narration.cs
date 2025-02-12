@@ -59,9 +59,12 @@ public class Narration : MonoBehaviour
 
     void Start()
     {
-        ChangeDialogueSetByName("Start");
-
+        // Cache tous les éléments au démarrage
+        textComponent.enabled = false;
+        nameComponent.enabled = false;
         if (continueIcon != null) continueIcon.enabled = false;
+
+        ChangeDialogueSetByName("Start");
     }
 
     void Update()
@@ -86,6 +89,10 @@ public class Narration : MonoBehaviour
             currentDialogue = namedDialogue;
             textIndex = 0;
 
+            // Affiche les éléments du dialogue dès le début
+            textComponent.enabled = true;
+            nameComponent.enabled = true;
+
             if (currentDialogue.dialogues.Count > 0)
             {
                 currentDialogue.dialogues[textIndex].lineEvent.Invoke();
@@ -94,6 +101,10 @@ public class Narration : MonoBehaviour
             else
             {
                 Debug.LogWarning($"Dialogue set '{dialogueName}' is empty.");
+                // Cache les éléments si aucun dialogue n'est trouvé
+                textComponent.enabled = false;
+                nameComponent.enabled = false;
+                if (continueIcon != null) continueIcon.enabled = false;
             }
         }
         else
@@ -116,7 +127,15 @@ public class Narration : MonoBehaviour
             currentDialogue.dialogues[textIndex].lineEvent.Invoke();
             activeCoroutine = StartCoroutine(DisplayText(currentDialogue.dialogues[textIndex]));
         }
+        else
+        {
+            // Cache les éléments si on a terminé tous les dialogues
+            textComponent.enabled = false;
+            nameComponent.enabled = false;
+            if (continueIcon != null) continueIcon.enabled = false;
+        }
     }
+
 
     IEnumerator DisplayText(DialogLine dialogue)
     {
@@ -142,7 +161,9 @@ public class Narration : MonoBehaviour
             audioSource.Stop();
         }
 
+        // Affiche l'icône de continuer après la fin du texte
         if (continueIcon != null) continueIcon.enabled = true;
         isTextDisplaying = false;
     }
+
 }
