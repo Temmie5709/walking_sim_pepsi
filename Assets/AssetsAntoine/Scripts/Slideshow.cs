@@ -3,11 +3,25 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
+public class FlashbackProperties
+{
+    [SerializeField] public string FlashbackName;
+    [SerializeField] private List<Flashback> Flashback = new List<Flashback>();
+}
+
+[System.Serializable]
+public class Flashback
+{
+
+}
+
+
 public class Slideshow : MonoBehaviour
 {
     [SerializeField] private Image displayImage;
-    [SerializeField] private List<Sprite> images = new List<Sprite>() ;
-    [SerializeField] private List<float> displayTimes = new List<float>() ;
+    [SerializeField] private List<Sprite> images = new List<Sprite>();
+    [SerializeField] private List<float> displayTimes = new List<float>();
     [SerializeField] private float fadeDuration = 0.5f; // Temps du fondu
 
     private int currentIndex = 0;
@@ -15,12 +29,13 @@ public class Slideshow : MonoBehaviour
 
     void Start()
     {
+        displayImage = GetComponent<Image>();
+
         if (images.Count != displayTimes.Count)
         {
             Debug.LogError("Le nombre d'images et de temps d'affichage doit être identique !");
             return;
         }
-
         slideshowCoroutine = StartCoroutine(PlaySlideshow());
     }
 

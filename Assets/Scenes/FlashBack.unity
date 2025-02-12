@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -794,32 +794,7 @@ PrefabInstance:
     - target: {fileID: 864508024906863242, guid: c191d79ddaf16e842ba0931ec01e3347,
         type: 3}
       propertyPath: m_Name
-      value: Slideshow
-      objectReference: {fileID: 0}
-    - target: {fileID: 864508024906863242, guid: c191d79ddaf16e842ba0931ec01e3347,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6248440035781008705, guid: c191d79ddaf16e842ba0931ec01e3347,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.78431374
-      objectReference: {fileID: 0}
-    - target: {fileID: 6248440035781008705, guid: c191d79ddaf16e842ba0931ec01e3347,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6248440035781008705, guid: c191d79ddaf16e842ba0931ec01e3347,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6248440035781008705, guid: c191d79ddaf16e842ba0931ec01e3347,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
+      value: Flashback
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
