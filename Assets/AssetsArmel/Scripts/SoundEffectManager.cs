@@ -3,10 +3,12 @@ using UnityEngine;
 
 public class SoundEffectManager : MonoBehaviour
 {
-    public AudioSource BoutonSoundEffect;   // Source audio pour le son des boutons
+    public CameraZoom cameraZoomScript;     // Référence vers le script CameraZoom
+
+    public AudioSource BoutonExitSoundEffect;   // Source audio pour le son des boutons
     public AudioSource ExitSoundEffect;     // Source audio pour le son de sortie
     public AudioSource StartSoundEffect;    // Source audio pour le son de début
-    public CameraZoom cameraZoomScript;     // Référence vers le script CameraZoom
+    public AudioSource BoutonSoundEffect;
 
     private bool canZoom;
 
@@ -21,6 +23,15 @@ public class SoundEffectManager : MonoBehaviour
         if (BoutonSoundEffect != null)
         {
             BoutonSoundEffect.Play();
+        }
+    }
+
+    // Fonction pour jouer le son d'un bouton Exit
+    public void PlayBoutonExitSoundEffect()
+    {
+        if (BoutonExitSoundEffect != null)
+        {
+            BoutonExitSoundEffect.Play();
         }
     }
 

@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
         menuPanel.SetActive(true);
         
         // Initialiser les résolutions disponibles dans le dropdown
+        resolutionDropdown.ClearOptions();
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
 
@@ -60,6 +61,20 @@ public class GameManager : MonoBehaviour
         fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
     }
 
+    private void Update()
+    {
+        // Détecter si la touche Echap est pressée
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // Vérifier si le panneau des paramètres est actif
+            if (settingsPanel.activeSelf)
+            {
+                // Fermer le panneau des paramètres
+                CloseSettings();
+            }
+        }
+    }
+
     // Fonction appelée par le bouton "Paramètres"
     public void OpenSettings()
     {
@@ -70,7 +85,7 @@ public class GameManager : MonoBehaviour
         menuPanel.SetActive(false);
 
         // Changer le texte du titre en "Paramètres"
-        gameTitleText.text = "Paramètres";
+        gameTitleText.text = "";
     }
 
     // Fonction pour fermer le panneau des paramètres

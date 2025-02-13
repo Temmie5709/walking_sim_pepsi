@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 01ed276617b94f84ab97526ae452913d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Benguiat Pro ITC
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 80aa6824c7c355d4bb6a0c1196c03c3c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
