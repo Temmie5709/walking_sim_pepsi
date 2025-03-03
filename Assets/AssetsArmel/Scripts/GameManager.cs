@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject settingsPanel;  // Panneau des paramètres
+    public GameObject keyBindingsPanel;  // Panneau pour les assignations des touches (à créer dans l'éditeur)
+    public GameObject settingsButtonsPanel;  // Panneau pour les deux boutons "Paramètres du jeu" et "Assignations des touches" (à créer dans l'éditeur)
     public Slider volumeSlider;       // Slider pour le volume
     public Dropdown resolutionDropdown; // Dropdown pour choisir la résolution
     public Toggle fullscreenToggle;   // Toggle pour le mode plein écran
@@ -50,8 +52,10 @@ public class GameManager : MonoBehaviour
         // Lier le dropdown à la fonction de changement de résolution
         resolutionDropdown.onValueChanged.AddListener(SetResolution);
 
-        // Désactiver le panneau des paramètres au démarrage
+        // Désactiver les panneaux au démarrage
         settingsPanel.SetActive(false);
+        keyBindingsPanel.SetActive(false);
+        settingsButtonsPanel.SetActive(false);
 
         // Assigner le volume par défaut au Slider et le connecter
         volumeSlider.value = musiqueDeFond.volume; // Assigner la valeur actuelle de l'AudioSource
@@ -67,38 +71,86 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             // Vérifier si le panneau des paramètres est actif
-            if (settingsPanel.activeSelf)
+            if (settingsPanel.activeSelf || keyBindingsPanel.activeSelf)
             {
-                // Fermer le panneau des paramètres
-                CloseSettings();
+                // Fermer les panneaux de paramètres et d'assignation des touches
+                ReturnSettings();
             }
         }
     }
 
     // Fonction appelée par le bouton "Paramètres"
-    public void OpenSettings()
+    public void OpenSettingsMenu()
     {
-        // Ouvrir le panneau des paramètres
-        settingsPanel.SetActive(true);
-        
-        // Cacher les boutons du menu principal
+        // Cacher le menu principal et afficher les deux boutons "Paramètres du jeu" et "Assignations des touches"
         menuPanel.SetActive(false);
+        settingsButtonsPanel.SetActive(true);
 
-        // Changer le texte du titre en "Paramètres"
-        gameTitleText.text = "";
+        // Mettre à jour le texte du titre si nécessaire
+        gameTitleText.text = "Paramètres";
     }
 
-    // Fonction pour fermer le panneau des paramètres
+    // Fonction appelée pour ouvrir les paramètres du jeu
+    public void OpenGameSettings()
+    {
+        // Masquer le panneau des boutons de paramètres et ouvrir le panneau des paramètres du jeu
+        settingsButtonsPanel.SetActive(false);
+        settingsPanel.SetActive(true);
+
+        // Mettre à jour le texte du titre
+        gameTitleText.text = "Paramètres du jeu";
+    }
+
+    // Fonction appelée pour ouvrir le panneau des assignations de touches
+    public void OpenKeyBindingsSettings()
+    {
+        // Masquer le panneau des boutons de paramètres et ouvrir le panneau des assignations des touches
+        settingsButtonsPanel.SetActive(false);
+        keyBindingsPanel.SetActive(true);
+
+        // Mettre à jour le texte du titre
+        gameTitleText.text = "Attribution des touches";
+    }
+
+    // Fonction pour fermer les panneaux de paramètres et revenir au menu principal
     public void CloseSettings()
     {
-        // Fermer le panneau des paramètres
+        // Fermer tous les panneaux de paramètres
         settingsPanel.SetActive(false);
+        keyBindingsPanel.SetActive(false);
+        settingsButtonsPanel.SetActive(false);
 
-        // Réafficher les boutons du menu principal
+        // Réafficher le menu principal
         menuPanel.SetActive(true);
 
         // Réinitialiser le texte du titre au nom original du jeu
         gameTitleText.text = originalGameTitle;
+    }
+
+    // Fonction pour fermer les panneaux de paramètres et revenir au menu principal
+    public void ReturnSettings()
+    {
+        // Si le panneau des paramètres est actif, retourner au menu des boutons de paramètres
+        if (settingsPanel.activeSelf)
+        {
+            settingsPanel.SetActive(false);
+            settingsButtonsPanel.SetActive(true); // Retour aux choix de "Paramètres du jeu" ou "Assignations des touches"
+            gameTitleText.text = "Paramètres";
+        }
+        // Si le panneau d'assignation des touches est actif, retourner au menu des boutons de paramètres
+        else if (keyBindingsPanel.activeSelf)
+        {
+            keyBindingsPanel.SetActive(false);
+            settingsButtonsPanel.SetActive(true); // Retour aux choix de "Paramètres du jeu" ou "Assignations des touches"
+            gameTitleText.text = "Paramètres";
+        }
+        // Si aucun sous-panneau n'est actif, retourner au menu principal
+        else if (settingsButtonsPanel.activeSelf)
+        {
+            settingsButtonsPanel.SetActive(false);
+            menuPanel.SetActive(true); // Retour au menu principal
+            gameTitleText.text = originalGameTitle;
+        }
     }
 
     // Fonction appelée pour changer le volume à partir du slider
