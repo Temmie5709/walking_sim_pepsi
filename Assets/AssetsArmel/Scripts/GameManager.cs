@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject menuPanel;
     public Text gameTitleText;        // Texte du nom du jeu
 
-    private string originalGameTitle = "Nom du Jeu"; // Remplacer par le nom de votre jeu
+    private string originalGameTitle = "Walking Simulator"; // Remplacer par le nom de votre jeu
     private Resolution[] resolutions; // Liste des résolutions disponibles
 
     void Start()
@@ -87,6 +87,7 @@ public class GameManager : MonoBehaviour
         settingsButtonsPanel.SetActive(true);
 
         // Mettre à jour le texte du titre si nécessaire
+        gameTitleText.fontSize = 220;
         gameTitleText.text = "Paramètres";
     }
 
@@ -98,6 +99,7 @@ public class GameManager : MonoBehaviour
         settingsPanel.SetActive(true);
 
         // Mettre à jour le texte du titre
+        gameTitleText.fontSize = 180;
         gameTitleText.text = "Paramètres du jeu";
     }
 
@@ -109,6 +111,7 @@ public class GameManager : MonoBehaviour
         keyBindingsPanel.SetActive(true);
 
         // Mettre à jour le texte du titre
+        gameTitleText.fontSize = 180;
         gameTitleText.text = "Attribution des touches";
     }
 
@@ -124,6 +127,7 @@ public class GameManager : MonoBehaviour
         menuPanel.SetActive(true);
 
         // Réinitialiser le texte du titre au nom original du jeu
+        gameTitleText.fontSize = 220;
         gameTitleText.text = originalGameTitle;
     }
 
@@ -135,6 +139,7 @@ public class GameManager : MonoBehaviour
         {
             settingsPanel.SetActive(false);
             settingsButtonsPanel.SetActive(true); // Retour aux choix de "Paramètres du jeu" ou "Assignations des touches"
+            gameTitleText.fontSize = 220;
             gameTitleText.text = "Paramètres";
         }
         // Si le panneau d'assignation des touches est actif, retourner au menu des boutons de paramètres
@@ -142,6 +147,7 @@ public class GameManager : MonoBehaviour
         {
             keyBindingsPanel.SetActive(false);
             settingsButtonsPanel.SetActive(true); // Retour aux choix de "Paramètres du jeu" ou "Assignations des touches"
+            gameTitleText.fontSize = 220;
             gameTitleText.text = "Paramètres";
         }
         // Si aucun sous-panneau n'est actif, retourner au menu principal
