@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement; // Import nécessaire pour changer de scène
 
 public class CameraZoom : MonoBehaviour
 {
+    public GameManager gameManager;
     public Transform startCameraPosition;  // Position initiale (dézoomée)
     public Transform targetCameraPosition; // Position finale (vue première personne)
     public float zoomSpeed = 2f;           // Vitesse du zoom
@@ -31,6 +32,17 @@ public class CameraZoom : MonoBehaviour
     // Fonction appelée pour démarrer le zoom (sera déclenchée après la fin du son)
     public void StartZoom()
     {
+        // Désactiver le titre et le menu au début du zoom
+        if (gameManager != null)
+        {
+            gameManager.gameTitleText.gameObject.SetActive(false);
+            gameManager.menuPanel.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("GameManager n'est pas assigné !");
+        }
+
         isZooming = true;
     }
 

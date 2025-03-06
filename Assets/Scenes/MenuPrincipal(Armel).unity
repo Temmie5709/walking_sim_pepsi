@@ -1470,9 +1470,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603f70c92dc7d9a43b8c46f153098848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 1181987743}
   startCameraPosition: {fileID: 1623661897}
   targetCameraPosition: {fileID: 880896667}
-  zoomSpeed: 0.6
+  zoomSpeed: 3
   sceneToLoad: Map
 --- !u!82 &420443985
 AudioSource:
@@ -3022,7 +3023,7 @@ GameObject:
   - component: {fileID: 825062972}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3415,7 +3416,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &888939712
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5387,7 +5388,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1586740822
 RectTransform:
   m_ObjectHideFlags: 0
