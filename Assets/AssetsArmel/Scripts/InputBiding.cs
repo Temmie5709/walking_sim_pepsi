@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class InputBinding : MonoBehaviour
 {
     [SerializeField] private InputInfos[] baseInputs; // Liste des entrées de base
-    private Dictionary<string, char> inputsDictionary = new Dictionary<string, char>(); // Dictionnaire pour gérer les entrées
+    public Dictionary<string, char> inputsDictionary = new Dictionary<string, char>(); // Dictionnaire pour gérer les entrées
 
     [SerializeField] private Text[] inputTexts; // Référence à l'élément UI Text pour afficher les touches
     [SerializeField] private Button[] inputButtons; // Référence aux boutons pour chaque action
@@ -14,13 +14,26 @@ public class InputBinding : MonoBehaviour
 
     public Text messageText; // Texte pour afficher le message temporaire
 
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject); // Garde cet objet actif à travers les changements de scène
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         // Initialisation des entrées de base dans le dictionnaire
         foreach (var _input in baseInputs)
         {
-            inputsDictionary.Add(_input.Name, _input.Key);
+            // Vérifier si une touche est déjà sauvegardée dans PlayerPrefs, sinon utiliser la touche par défaut
+            if (PlayerPrefs.HasKey(_input.Name))
+            {
+                inputsDictionary.Add(_input.Name, PlayerPrefs.GetString(_input.Name)[0]); // Charger la touche sauvegardée
+            }
+            else
+            {
+                inputsDictionary.Add(_input.Name, _input.Key); // Utiliser la touche par défaut
+            }
         }
 
         // Cacher le message au démarrage
@@ -46,6 +59,9 @@ public class InputBinding : MonoBehaviour
                     {
                         // Met à jour la touche dans le dictionnaire
                         inputsDictionary[bindingAxis] = (char)_keycode;
+
+                        // Sauvegarde de la touche dans PlayerPrefs
+                        PlayerPrefs.SetString(bindingAxis, _keycode.ToString());
 
                         // Met à jour l'affichage dans l'UI
                         UpdateUI();
@@ -79,12 +95,6 @@ public class InputBinding : MonoBehaviour
     public void Bind(string _axis)
     {
         bindingAxis = _axis;
-
-        /*for (int i = 0; i < baseInputs.Length; i++)
-        {
-            // Mise à jour du texte associé à l'entrée
-            inputTexts[i].text = $"?";
-        }*/
 
         // Affiche le message dès que la modification commence
         messageText.gameObject.SetActive(true);
