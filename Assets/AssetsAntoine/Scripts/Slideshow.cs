@@ -7,54 +7,66 @@ public class Slideshow : MonoBehaviour
 {
     [SerializeField] private Image displayImage;
     [SerializeField] private List<Sprite> images = new List<Sprite>();
-    [SerializeField] private List<float> displayTimes = new List<float>();
     [SerializeField] private float fadeDuration = 0.5f;
+    [SerializeField] private KeyCode nextImageKey = KeyCode.Space; // Touche configurable depuis l'inspecteur
 
     [SerializeField] private Vector2 minSize = new Vector2(200, 200); // Taille min
     [SerializeField] private Vector2 maxSize = new Vector2(800, 600); // Taille max
 
     private int currentIndex = 0;
-    private Coroutine slideshowCoroutine;
 
-
-    void Start()
+    void OnEnable()
     {
-        if (images.Count != displayTimes.Count)
-        {
-            Debug.LogError("Le nombre d'images et de temps d'affichage doit être identique !");
-            return;
-        }
-        slideshowCoroutine = StartCoroutine(PlaySlideshow());
+        RestartSlideshow();
     }
 
-    IEnumerator PlaySlideshow()
+    void Update()
     {
-        while (currentIndex<images.Count)
+        if (Input.GetKeyDown(nextImageKey)) // Change l'image avec la touche configurable
         {
-            displayImage.sprite = images[currentIndex];
-
-            // Redimensionner l'image pour éviter l'étirement
-            ResizeImage();
-
-            yield return StartCoroutine(FadeImage(0f, 1f, fadeDuration));
-            yield return new WaitForSeconds(displayTimes[currentIndex]);
-            yield return StartCoroutine(FadeImage(1f, 0f, fadeDuration));
-
-            currentIndex++;
+            NextImage();
         }
-        gameObject.SetActive(false);
+    }
+
+    void RestartSlideshow()
+    {
+        if (images.Count == 0)
+        {
+            Debug.LogError("Aucune image dans le diaporama !");
+            return;
+        }
+
+        currentIndex = 0;
+        displayImage.sprite = images[currentIndex];
+        ResizeImage();
+        StartCoroutine(FadeImage(0f, 1f, fadeDuration));
+    }
+
+    void NextImage()
+    {
+        StartCoroutine(FadeImage(1f, 0f, fadeDuration, () =>
+        {
+            currentIndex++;
+            if (currentIndex >= images.Count)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+
+            displayImage.sprite = images[currentIndex];
+            ResizeImage();
+            StartCoroutine(FadeImage(0f, 1f, fadeDuration));
+        }));
     }
 
     void ResizeImage()
     {
         if (displayImage.sprite == null) return;
 
-        // Récupérer la taille originale du sprite
         float originalWidth = displayImage.sprite.texture.width;
         float originalHeight = displayImage.sprite.texture.height;
         float aspectRatio = originalWidth / originalHeight;
 
-        // Taille cible dans les limites définies
         float targetWidth = Mathf.Clamp(originalWidth, minSize.x, maxSize.x);
         float targetHeight = targetWidth / aspectRatio;
 
@@ -64,25 +76,10 @@ public class Slideshow : MonoBehaviour
             targetWidth = targetHeight * aspectRatio;
         }
 
-        // Appliquer la nouvelle taille sans déformer
         displayImage.rectTransform.sizeDelta = new Vector2(targetWidth, targetHeight);
-
-        // Ajuster pour ne pas dépasser la taille du parent (optionnel)
-        RectTransform parentRect = displayImage.rectTransform.parent as RectTransform;
-        if (parentRect != null)
-        {
-            float maxParentWidth = parentRect.rect.width;
-            float maxParentHeight = parentRect.rect.height;
-
-            if (targetWidth > maxParentWidth || targetHeight > maxParentHeight)
-            {
-                float scaleFactor = Mathf.Min(maxParentWidth / targetWidth, maxParentHeight / targetHeight);
-                displayImage.rectTransform.sizeDelta = new Vector2(targetWidth * scaleFactor, targetHeight * scaleFactor);
-            }
-        }
     }
 
-    IEnumerator FadeImage(float startAlpha, float endAlpha, float duration)
+    IEnumerator FadeImage(float startAlpha, float endAlpha, float duration, System.Action onComplete = null)
     {
         float elapsedTime = 0f;
         Color color = displayImage.color;
@@ -98,5 +95,7 @@ public class Slideshow : MonoBehaviour
 
         color.a = endAlpha;
         displayImage.color = color;
+
+        onComplete?.Invoke();
     }
 }

@@ -15,6 +15,7 @@ public class InteractableFlashback : MonoBehaviour, IInteractable
     [SerializeField] Color ColorLooking;
     [SerializeField, Range(0f, 0.5f)] float ThiknessLooking;
     [SerializeField] GameObject FlashbackObject;
+    [SerializeField]
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,6 @@ public class InteractableFlashback : MonoBehaviour, IInteractable
         Material = ObjectOutline.GetComponent<Renderer>().material;
         InitialColor = Material.GetColor("_OutlineColor");
         InitialThickness = Material.GetFloat("_OutlineThickness");
-
         if(InitialThickness >= ThiknessLooking)
         {
             Debug.LogWarning("La taille du countour initiale est plus grand que la taille quand il est regardé");
