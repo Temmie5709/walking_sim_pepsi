@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &89065223430928669
 RectTransform:
   m_ObjectHideFlags: 0
@@ -89,6 +89,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayImage: {fileID: 6248440035781008705}
-  images: []
-  displayTimes: []
+  images:
+  - {fileID: 21300000, guid: ab90c94b593cac248b2146fe870cb7d1, type: 3}
+  - {fileID: 21300000, guid: 8df35fa3b78e12a41b56351a412496a2, type: 3}
+  - {fileID: 21300000, guid: 759a72ae802abac429b770553d9cdc69, type: 3}
   fadeDuration: 0.5
+  nextImageKey: 101
+  minSize: {x: 200, y: 200}
+  maxSize: {x: 440, y: 440}
