@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableObject : MonoBehaviour, IInteractable
+public class FlashBackObject : MonoBehaviour, IInteractable
 {
 
     [SerializeField] GameObject ObjectOutline;
@@ -14,6 +14,7 @@ public class InteractableObject : MonoBehaviour, IInteractable
 
     [SerializeField] Color ColorLooking;
     [SerializeField, Range(0f, 0.5f)] float ThiknessLooking;
+    [SerializeField] GameObject FlashbackObject;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,7 @@ public class InteractableObject : MonoBehaviour, IInteractable
         return;
     }
     public void Interact() {
-        Debug.Log("Do Something");
+        Debug.Log("Flashback");
+        FlashbackObject.SetActive(true);
     }
 }

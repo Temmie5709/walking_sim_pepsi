@@ -246,6 +246,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionDistance: 2
+--- !u!1 &1247705370 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 864508024906863242, guid: c191d79ddaf16e842ba0931ec01e3347,
+    type: 3}
+  m_PrefabInstance: {fileID: 8646782664237447137}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1302337460
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,26 +630,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 83668661}
     m_Modifications:
-    - target: {fileID: 2236633471149458278, guid: 00d9f75de4c2c6f49bc188f4b021b5f8,
+    - target: {fileID: 2911983763950890283, guid: 00d9f75de4c2c6f49bc188f4b021b5f8,
         type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2236633471149458278, guid: 00d9f75de4c2c6f49bc188f4b021b5f8,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2236633471149458278, guid: 00d9f75de4c2c6f49bc188f4b021b5f8,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2236633471149458278, guid: 00d9f75de4c2c6f49bc188f4b021b5f8,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 3188550072927998001, guid: 00d9f75de4c2c6f49bc188f4b021b5f8,
         type: 3}
       propertyPath: m_Pivot.x
@@ -843,6 +834,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2996883224088762716, guid: e65dc30d0d2f7d54993c25c3aa239756,
+        type: 3}
+      propertyPath: FlashbackObject
+      value: 
+      objectReference: {fileID: 1247705370}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -960,64 +956,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Flashback
-      objectReference: {fileID: 0}
-    - target: {fileID: 864508024906863242, guid: c191d79ddaf16e842ba0931ec01e3347,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5876846676302936479, guid: c191d79ddaf16e842ba0931ec01e3347,
-        type: 3}
-      propertyPath: maxSize.x
-      value: 440
-      objectReference: {fileID: 0}
-    - target: {fileID: 5876846676302936479, guid: c191d79ddaf16e842ba0931ec01e3347,
-        type: 3}
-      propertyPath: maxSize.y
-      value: 440
-      objectReference: {fileID: 0}
-    - target: {fileID: 5876846676302936479, guid: c191d79ddaf16e842ba0931ec01e3347,
-        type: 3}
-      propertyPath: images.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5876846676302936479, guid: c191d79ddaf16e842ba0931ec01e3347,
-        type: 3}
-      propertyPath: images.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: ab90c94b593cac248b2146fe870cb7d1,
-        type: 3}
-    - target: {fileID: 5876846676302936479, guid: c191d79ddaf16e842ba0931ec01e3347,
-        type: 3}
-      propertyPath: images.Array.data[1]
-      value: 
-      objectReference: {fileID: 21300000, guid: 8df35fa3b78e12a41b56351a412496a2,
-        type: 3}
-    - target: {fileID: 5876846676302936479, guid: c191d79ddaf16e842ba0931ec01e3347,
-        type: 3}
-      propertyPath: images.Array.data[2]
-      value: 
-      objectReference: {fileID: 21300000, guid: 759a72ae802abac429b770553d9cdc69,
-        type: 3}
-    - target: {fileID: 5876846676302936479, guid: c191d79ddaf16e842ba0931ec01e3347,
-        type: 3}
-      propertyPath: displayTimes.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5876846676302936479, guid: c191d79ddaf16e842ba0931ec01e3347,
-        type: 3}
-      propertyPath: displayTimes.Array.data[0]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5876846676302936479, guid: c191d79ddaf16e842ba0931ec01e3347,
-        type: 3}
-      propertyPath: displayTimes.Array.data[1]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5876846676302936479, guid: c191d79ddaf16e842ba0931ec01e3347,
-        type: 3}
-      propertyPath: displayTimes.Array.data[2]
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

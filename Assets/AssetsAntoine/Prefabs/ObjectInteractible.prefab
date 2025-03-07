@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2642527616027507175}
   - component: {fileID: 827749351179655226}
   - component: {fileID: 7036157284305329909}
-  - component: {fileID: 6619714946206558754}
+  - component: {fileID: 2996883224088762716}
   m_Layer: 0
   m_Name: ObjectInteractible
   m_TagString: Untagged
@@ -107,7 +107,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6619714946206558754
+--- !u!114 &2996883224088762716
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,12 +116,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 516811945473026045}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 514355e5bc6b81f4ab06ddf7cae9af2c, type: 3}
+  m_Script: {fileID: 11500000, guid: fa4b3732fac45a643b8d0d2f09247363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectOutline: {fileID: 7218309263686855036}
-  ColorLooking: {r: 0.7122642, g: 1, b: 0.9874482, a: 0}
+  ColorLooking: {r: 0.7137255, g: 1, b: 0.98823535, a: 1}
   ThiknessLooking: 0.11
+  FlashbackObject: {fileID: 0}
 --- !u!1 &7218309263686855036
 GameObject:
   m_ObjectHideFlags: 0
