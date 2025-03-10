@@ -9,6 +9,7 @@ public class SoundEffectManager : MonoBehaviour
     public AudioSource ExitSoundEffect;     // Source audio pour le son de sortie
     public AudioSource StartSoundEffect;    // Source audio pour le son de début
     public AudioSource BoutonSoundEffect;
+    public AudioSource KeySoundEffect;
 
     private bool canZoom;
 
@@ -24,6 +25,10 @@ public class SoundEffectManager : MonoBehaviour
         {
             BoutonSoundEffect.Play();
         }
+        else
+        {
+            Debug.Log("Aucun son de Bouton Menu");
+        }
     }
 
     // Fonction pour jouer le son d'un bouton Exit
@@ -32,6 +37,10 @@ public class SoundEffectManager : MonoBehaviour
         if (BoutonExitSoundEffect != null)
         {
             BoutonExitSoundEffect.Play();
+        }
+        else
+        {
+            Debug.Log("Aucun son de Fermer/Retour Menu");
         }
     }
 
@@ -44,8 +53,7 @@ public class SoundEffectManager : MonoBehaviour
         }
         else
         {
-            // Si aucun son n'est défini, quitter directement
-            Application.Quit();
+            Debug.Log("Aucun son d'Exit");
         }
     }
 
@@ -70,6 +78,22 @@ public class SoundEffectManager : MonoBehaviour
         if (StartSoundEffect != null)
         {
             StartCoroutine(WaitForStartSoundToEnd());
+        }
+        else
+        {
+            Debug.Log("Aucun son pour Start");
+        }
+    }
+
+    public void PlayKeySoundEffect()
+    {
+        if (KeySoundEffect != null)
+        {
+            KeySoundEffect.Play();
+        }
+        else
+        {
+            Debug.Log("Aucun son de Changement de touches");
         }
     }
 
