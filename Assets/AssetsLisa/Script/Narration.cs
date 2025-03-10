@@ -5,10 +5,16 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
+public enum CharacterName
+{
+    VITA,
+    Toshiaki
+}
+
 [System.Serializable]
 public class DialogLine
 {
-    public string characterName = ""; // Nom du personnage
+    public CharacterName character;
     public string line = "";
     public UnityEvent lineEvent;
 }
@@ -22,21 +28,23 @@ public class NamedDialogue
 
 public class Narration : MonoBehaviour
 {
+    public GameObject dialogueContainer; // Empty qui contient toute l'UI
     public TextMeshProUGUI textComponent;
-    public TextMeshProUGUI nameComponent; // Affichage du nom du personnage
+    public TextMeshProUGUI nameComponent;
     public float textSpeed = 0.05f;
     private Coroutine activeCoroutine;
 
     public Image continueIcon;
 
-    public AudioClip typeSound;
+    public AudioClip vitaSound;
+    public AudioClip joueurSound;
     public float typeSoundVolume = 0.5f;
     private AudioSource audioSource;
 
     public Dictionary<string, NamedDialogue> dialogueSets = new Dictionary<string, NamedDialogue>();
     public List<NamedDialogue> namedDialogues = new List<NamedDialogue>();
 
-    public NamedDialogue currentDialogue;
+    private NamedDialogue currentDialogue;
     private int textIndex = 0;
     private bool isTextDisplaying = false;
 
@@ -51,7 +59,6 @@ public class Narration : MonoBehaviour
         }
 
         audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.clip = typeSound;
         audioSource.volume = typeSoundVolume;
         audioSource.playOnAwake = false;
         audioSource.loop = true;
@@ -59,11 +66,7 @@ public class Narration : MonoBehaviour
 
     void Start()
     {
-        // Cache tous les éléments au démarrage
-        textComponent.enabled = false;
-        nameComponent.enabled = false;
-        if (continueIcon != null) continueIcon.enabled = false;
-
+        dialogueContainer.SetActive(false); // Désactive l'UI au démarrage
         ChangeDialogueSetByName("Start");
     }
 
@@ -88,10 +91,7 @@ public class Narration : MonoBehaviour
         {
             currentDialogue = namedDialogue;
             textIndex = 0;
-
-            // Affiche les éléments du dialogue dès le début
-            textComponent.enabled = true;
-            nameComponent.enabled = true;
+            dialogueContainer.SetActive(true); // Active l'UI quand un dialogue commence
 
             if (currentDialogue.dialogues.Count > 0)
             {
@@ -100,16 +100,8 @@ public class Narration : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning($"Dialogue set '{dialogueName}' is empty.");
-                // Cache les éléments si aucun dialogue n'est trouvé
-                textComponent.enabled = false;
-                nameComponent.enabled = false;
-                if (continueIcon != null) continueIcon.enabled = false;
+                dialogueContainer.SetActive(false); // Désactive si aucun dialogue
             }
-        }
-        else
-        {
-            Debug.LogWarning($"Dialogue set '{dialogueName}' not found.");
         }
     }
 
@@ -129,26 +121,17 @@ public class Narration : MonoBehaviour
         }
         else
         {
-            // Cache les éléments si on a terminé tous les dialogues
-            textComponent.enabled = false;
-            nameComponent.enabled = false;
-            if (continueIcon != null) continueIcon.enabled = false;
+            dialogueContainer.SetActive(false); // Désactive l'UI à la fin des dialogues
         }
     }
-
 
     IEnumerator DisplayText(DialogLine dialogue)
     {
         isTextDisplaying = true;
         textComponent.text = "";
-        nameComponent.text = dialogue.characterName; // Affiche le nom du personnage
+        nameComponent.text = dialogue.character.ToString();
 
-        if (typeSound != null && audioSource != null)
-        {
-            float randomStartTime = Random.Range(0f, typeSound.length);
-            audioSource.time = randomStartTime;
-            audioSource.Play();
-        }
+        PlayCharacterSound(dialogue.character);
 
         foreach (char c in dialogue.line)
         {
@@ -156,14 +139,29 @@ public class Narration : MonoBehaviour
             yield return new WaitForSeconds(textSpeed);
         }
 
-        if (audioSource != null && audioSource.isPlaying)
+        if (audioSource.isPlaying)
         {
             audioSource.Stop();
         }
 
-        // Affiche l'icône de continuer après la fin du texte
         if (continueIcon != null) continueIcon.enabled = true;
         isTextDisplaying = false;
     }
 
+    void PlayCharacterSound(CharacterName character)
+    {
+        switch (character)
+        {
+            case CharacterName.VITA:
+                audioSource.clip = vitaSound;
+                break;
+            case CharacterName.Toshiaki:
+                audioSource.clip = joueurSound;
+                break;
+        }
+        if (audioSource.clip != null)
+        {
+            audioSource.Play();
+        }
+    }
 }
