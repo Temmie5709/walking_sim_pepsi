@@ -227,25 +227,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &981960071 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2087443745582857005, guid: f3722aa3317fbf94b9b33d7a740b5924,
-    type: 3}
-  m_PrefabInstance: {fileID: 2408619847192812565}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &981960073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 981960071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5dcc8c53061d964882d90d53f03a3b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionDistance: 2
 --- !u!1 &1247705370 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 864508024906863242, guid: c191d79ddaf16e842ba0931ec01e3347,
@@ -608,10 +589,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 389193843481744570, guid: f3722aa3317fbf94b9b33d7a740b5924,
+    - target: {fileID: 3689193734670321493, guid: f3722aa3317fbf94b9b33d7a740b5924,
         type: 3}
-      propertyPath: m_SlopeLimit
-      value: 90
+      propertyPath: interactionDistance
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5706215503974704013, guid: f3722aa3317fbf94b9b33d7a740b5924,
         type: 3}
@@ -621,11 +602,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2087443745582857005, guid: f3722aa3317fbf94b9b33d7a740b5924,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 981960073}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3722aa3317fbf94b9b33d7a740b5924, type: 3}
 --- !u!1001 &4273907426835381371
 PrefabInstance:
@@ -764,6 +741,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObjectInteractible
       objectReference: {fileID: 0}
+    - target: {fileID: 1060331015697048530, guid: e65dc30d0d2f7d54993c25c3aa239756,
+        type: 3}
+      propertyPath: Events.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1247705370}
     - target: {fileID: 1905243424145325349, guid: e65dc30d0d2f7d54993c25c3aa239756,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -814,11 +796,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2996883224088762716, guid: e65dc30d0d2f7d54993c25c3aa239756,
-        type: 3}
-      propertyPath: FlashbackObject
-      value: 
-      objectReference: {fileID: 1247705370}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
