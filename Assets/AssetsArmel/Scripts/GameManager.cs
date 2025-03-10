@@ -24,7 +24,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         menuPanel.SetActive(true);
-        
+
+        // Définir le volume initial de la musique de fond à 20 %
+        musiqueDeFond.volume = 0.2f; // 20% du volume
+
         // Initialiser les résolutions disponibles dans le dropdown
         resolutionDropdown.ClearOptions();
         resolutions = Screen.resolutions;
