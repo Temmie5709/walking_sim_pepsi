@@ -48,6 +48,12 @@ public class Narration : MonoBehaviour
     private int textIndex = 0;
     private bool isTextDisplaying = false;
 
+    public PlayerMove playerMove; // Référence au script PlayerMove
+    public PlayerLook cameraController; // Référence au script de la caméra (si vous en avez un)
+
+    private Vector3 initialCameraPosition; // Position initiale de la caméra
+    private Quaternion initialCameraRotation; // Rotation initiale de la caméra
+
     void Awake()
     {
         foreach (var namedDialogue in namedDialogues)
@@ -62,12 +68,17 @@ public class Narration : MonoBehaviour
         audioSource.volume = typeSoundVolume;
         audioSource.playOnAwake = false;
         audioSource.loop = true;
+
+        if (cameraController != null)
+        {
+            initialCameraPosition = Camera.main.transform.position; // Position initiale de la caméra
+            initialCameraRotation = Camera.main.transform.rotation; // Rotation initiale de la caméra
+        }
     }
 
     void Start()
     {
         dialogueContainer.SetActive(false); // Désactive l'UI au démarrage
-        ChangeDialogueSetByName("Start");
     }
 
     void Update()
@@ -92,6 +103,24 @@ public class Narration : MonoBehaviour
             currentDialogue = namedDialogue;
             textIndex = 0;
             dialogueContainer.SetActive(true); // Active l'UI quand un dialogue commence
+
+            // Désactiver les contrôles du joueur pendant le dialogue
+            if (playerMove != null)
+            {
+                playerMove.enabled = false; // Désactive le mouvement du joueur
+            }
+
+            // Rendre la caméra statique pendant le dialogue
+            if (cameraController != null)
+            {
+                cameraController.enabled = false; // Désactive le contrôleur de la caméra
+            }
+            else
+            {
+                // Si aucun script de caméra n'est présent, on fixe la position et la rotation de la caméra
+                Camera.main.transform.position = initialCameraPosition;
+                Camera.main.transform.rotation = initialCameraRotation;
+            }
 
             if (currentDialogue.dialogues.Count > 0)
             {
@@ -121,6 +150,18 @@ public class Narration : MonoBehaviour
         }
         else
         {
+            // Réactiver les contrôles du joueur après la fin du dialogue
+            if (playerMove != null)
+            {
+                playerMove.enabled = true; // Réactive le mouvement du joueur
+            }
+
+            // Réactiver le contrôleur de la caméra après la fin du dialogue
+            if (cameraController != null)
+            {
+                cameraController.enabled = true; // Réactive le contrôleur de la caméra
+            }
+
             dialogueContainer.SetActive(false); // Désactive l'UI à la fin des dialogues
         }
     }
@@ -165,3 +206,4 @@ public class Narration : MonoBehaviour
         }
     }
 }
+
