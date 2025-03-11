@@ -7,7 +7,7 @@ public class Zoom : MonoBehaviour
     public Camera zoomCamera; // Caméra de zoom
     public GameObject overlayUI; // Overlay affiché lors du zoom
 
-    private bool isZoomed = false;
+    public bool isZoomed = false;
 
     void Start()
     {
@@ -17,14 +17,11 @@ public class Zoom : MonoBehaviour
 
     void Update()
     {
-        if (isZoomed)
+        // Si le joueur est en zoom, il peut appuyer sur E pour en sortir
+        if (isZoomed && Input.GetKeyDown(KeyCode.E))
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                ToggleZoom();
-            }
+            ToggleZoom();
         }
-
     }
 
     public void ToggleZoom()
