@@ -7,7 +7,7 @@ public class Zoom : MonoBehaviour
     public PlayerMove playerMove; // Script de mouvement du joueur
     public Camera mainCamera;
     public Camera zoomCamera;
-    public float transitionSpeed = 2f;
+    public float transitionDuration = 2f; // Durée de la transition
 
     private bool isZoomed = false;
     private bool inTransition = false;
@@ -32,7 +32,7 @@ public class Zoom : MonoBehaviour
         {
             if (isZoomed)
             {
-                StartCoroutine(SwitchCamera(zoomCamera, mainCamera, true));
+                StartCoroutine(TransitionCameras(zoomCamera, mainCamera, true));
             }
         }
     }
@@ -42,11 +42,11 @@ public class Zoom : MonoBehaviour
         if (!isZoomed && !inTransition)
         {
             zoomCamera.gameObject.SetActive(true);
-            StartCoroutine(SwitchCamera(mainCamera, zoomCamera, false));
+            StartCoroutine(TransitionCameras(mainCamera, zoomCamera, false));
         }
     }
 
-    private IEnumerator SwitchCamera(Camera from, Camera to, bool enableMovement)
+    private IEnumerator TransitionCameras(Camera from, Camera to, bool enableMovement)
     {
         inTransition = true;
         float elapsedTime = 0f;
@@ -64,11 +64,11 @@ public class Zoom : MonoBehaviour
         if (fromAudio != null) fromAudio.enabled = false;
         if (toAudio != null) toAudio.enabled = true;
 
-        while (elapsedTime < 1f)
+        while (elapsedTime < transitionDuration)
         {
-            elapsedTime += Time.deltaTime * transitionSpeed;
-            from.transform.position = Vector3.Lerp(startPos, endPos, elapsedTime);
-            from.transform.rotation = Quaternion.Lerp(startRot, endRot, elapsedTime);
+            elapsedTime += Time.deltaTime;
+            from.transform.position = Vector3.Lerp(startPos, endPos, elapsedTime / transitionDuration);
+            from.transform.rotation = Quaternion.Slerp(startRot, endRot, elapsedTime / transitionDuration);
             yield return null;
         }
 
