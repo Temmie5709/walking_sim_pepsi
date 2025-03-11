@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
 public class TaskManager : MonoBehaviour
@@ -31,11 +32,17 @@ public class TaskManager : MonoBehaviour
 
     public List<Task> ActiveTasks = new List<Task>();
     [SerializeField] GameObject TaskPrefab;
+    string Text = ""; 
 
-    public void CreateTask(string text, int id)
+    public void setTaskText(string text)
     {
-        ActiveTasks.Add(new Task(text, id, TaskPrefab,gameObject));
+        Text = text;
     }
+    public void CreateTask(int id)
+    {
+        ActiveTasks.Add(new Task(Text, id, TaskPrefab,gameObject));
+    }
+
 
     public void StopTask(int id)
     {
