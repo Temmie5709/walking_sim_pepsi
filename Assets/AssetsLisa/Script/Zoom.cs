@@ -1,87 +1,47 @@
-using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Zoom : MonoBehaviour
 {
-    public CharacterController characterController;
-    public PlayerMove playerMove; // Script de mouvement du joueur
-    public Camera mainCamera;
-    public Camera zoomCamera;
-    public float transitionDuration = 2f; // Durée de la transition
+    public Camera mainCamera; // Caméra principale
+    public Camera zoomCamera; // Caméra de zoom
+    public GameObject overlayUI; // Overlay affiché lors du zoom
 
     private bool isZoomed = false;
-    private bool inTransition = false;
-
-    private AudioListener mainAudioListener;
-    private AudioListener zoomAudioListener;
 
     void Start()
     {
         zoomCamera.gameObject.SetActive(false);
-        mainAudioListener = mainCamera.GetComponent<AudioListener>();
-        zoomAudioListener = zoomCamera.GetComponent<AudioListener>();
-        if (zoomAudioListener != null)
-        {
-            zoomAudioListener.enabled = false;
-        }
+        overlayUI.SetActive(false);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !inTransition)
+        if (isZoomed)
         {
-            if (isZoomed)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                StartCoroutine(TransitionCameras(zoomCamera, mainCamera, true));
+                ToggleZoom();
             }
         }
+
     }
 
-    public void ActivateZoom()
+    public void ToggleZoom()
     {
-        if (!isZoomed && !inTransition)
+        isZoomed = !isZoomed;
+
+        if (isZoomed)
         {
+            mainCamera.gameObject.SetActive(false);
             zoomCamera.gameObject.SetActive(true);
-            StartCoroutine(TransitionCameras(mainCamera, zoomCamera, false));
+            overlayUI.SetActive(true);
         }
-    }
-
-    private IEnumerator TransitionCameras(Camera from, Camera to, bool enableMovement)
-    {
-        inTransition = true;
-        float elapsedTime = 0f;
-
-        Vector3 startPos = from.transform.position;
-        Quaternion startRot = from.transform.rotation;
-
-        Vector3 endPos = to.transform.position;
-        Quaternion endRot = to.transform.rotation;
-
-        to.gameObject.SetActive(true);
-
-        AudioListener fromAudio = from.GetComponent<AudioListener>();
-        AudioListener toAudio = to.GetComponent<AudioListener>();
-        if (fromAudio != null) fromAudio.enabled = false;
-        if (toAudio != null) toAudio.enabled = true;
-
-        while (elapsedTime < transitionDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            from.transform.position = Vector3.Lerp(startPos, endPos, elapsedTime / transitionDuration);
-            from.transform.rotation = Quaternion.Slerp(startRot, endRot, elapsedTime / transitionDuration);
-            yield return null;
-        }
-
-        from.gameObject.SetActive(false);
-        isZoomed = !enableMovement;
-        characterController.enabled = enableMovement;
-        playerMove.enabled = enableMovement;
-
-        if (enableMovement)
+        else
         {
             zoomCamera.gameObject.SetActive(false);
+            mainCamera.gameObject.SetActive(true);
+            overlayUI.SetActive(false);
         }
-
-        inTransition = false;
     }
 }
