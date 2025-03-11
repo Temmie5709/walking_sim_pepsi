@@ -24,7 +24,7 @@ public class TaskManager : MonoBehaviour
 
        public void Delete()
        {
-            GameObject.Destroy(TaskObject);
+            Destroy(TaskObject);
        }
     }
 

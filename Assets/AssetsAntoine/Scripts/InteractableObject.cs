@@ -46,8 +46,7 @@ public class InteractableObject : MonoBehaviour, IInteractable
 
         }
         return;
-
-    }
+        }
     public void StopLooking()
     {
         Debug.Log("StopedLooking");
@@ -61,5 +60,9 @@ public class InteractableObject : MonoBehaviour, IInteractable
     public void Interact() {
         Debug.Log("Do Something");
         Events.Invoke();
+    }
+    public bool IsActive()
+    {
+        return enabled;
     }
 }

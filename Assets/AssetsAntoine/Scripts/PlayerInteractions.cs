@@ -32,8 +32,7 @@ public class PlayerInteractions : MonoBehaviour
         if (Physics.Raycast(ray, out hit, interactionDistance))
         {
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
-
-            if (interactable != null)
+            if (interactable != null && interactable.IsActive())
             {
                 // Si on regarde un nouvel objet interactif
                 if (interactable != LastInteractable)
@@ -42,8 +41,8 @@ public class PlayerInteractions : MonoBehaviour
                         InteractPopUp.SetActive(false);
                         LastInteractable.StopLooking(); // On arrête de regarder l'ancien objet
                     }
-                    InteractPopUp.SetActive(true);
                     interactable.Looking(); // Active l'effet de "regard"
+                    InteractPopUp.SetActive(true);
                     LastInteractable = interactable; // On met à jour l'objet regardé
                 }
                 // Interaction avec E
