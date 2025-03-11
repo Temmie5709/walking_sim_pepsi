@@ -30,7 +30,7 @@ RectTransform:
   m_GameObject: {fileID: 4293482086808497333}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.52948916, y: 0.52948916, z: 0.52948916}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -94,9 +94,9 @@ MonoBehaviour:
     m_Left: 1100
     m_Right: 0
     m_Top: 1
-    m_Bottom: 300
+    m_Bottom: 270
   m_ChildAlignment: 6
-  m_Spacing: 127.4
+  m_Spacing: 150
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -116,8 +116,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 2
+  m_HorizontalFit: 0
+  m_VerticalFit: 0
 --- !u!114 &319851263298347352
 MonoBehaviour:
   m_ObjectHideFlags: 0
