@@ -6,6 +6,7 @@ public class PlayerInteractions : MonoBehaviour
 {
 
     [SerializeField] float interactionDistance = 3f;
+    [SerializeField] GameObject InteractPopUp;
 
     private IInteractable LastInteractable;
 
@@ -23,6 +24,8 @@ public class PlayerInteractions : MonoBehaviour
     }
 
     void RaycastInteraction()
+
+
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -35,9 +38,11 @@ public class PlayerInteractions : MonoBehaviour
                 // Si on regarde un nouvel objet interactif
                 if (interactable != LastInteractable)
                 {
-                    if (LastInteractable != null)
+                    if (LastInteractable != null) {
+                        InteractPopUp.SetActive(false);
                         LastInteractable.StopLooking(); // On arrête de regarder l'ancien objet
-
+                    }
+                    InteractPopUp.SetActive(true);
                     interactable.Looking(); // Active l'effet de "regard"
                     LastInteractable = interactable; // On met à jour l'objet regardé
                 }
@@ -52,6 +57,7 @@ public class PlayerInteractions : MonoBehaviour
                 // Si le raycast ne touche plus d'objet interactif
                 if (LastInteractable != null)
                 {
+                    InteractPopUp.SetActive(false);
                     LastInteractable.StopLooking();
                     LastInteractable = null;
                 }
@@ -62,6 +68,7 @@ public class PlayerInteractions : MonoBehaviour
             // Si aucun objet n'est touché par le Raycast
             if (LastInteractable != null)
             {
+                InteractPopUp.SetActive(false);
                 LastInteractable.StopLooking();
                 LastInteractable = null;
             }

@@ -1,3 +1,4 @@
+using GLTFast.Schema;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ public class InteractableObject : MonoBehaviour, IInteractable
 {
 
     [SerializeField] GameObject ObjectOutline;
-    private Material Material;
+    private Renderer render;
 
     private Color InitialColor;
     private float InitialThickness;
@@ -21,9 +22,9 @@ public class InteractableObject : MonoBehaviour, IInteractable
     // Start is called before the first frame update
     void Start()
     {
-        Material = ObjectOutline.GetComponent<Renderer>().material;
-        InitialColor = Material.GetColor("_OutlineColor");
-        InitialThickness = Material.GetFloat("_OutlineThickness");
+        render = ObjectOutline.GetComponent<Renderer>();
+        InitialColor = render.material.GetColor("_OutlineColor");
+        InitialThickness = render.material.GetFloat("_OutlineThickness");
         if(InitialThickness >= ThiknessLooking)
         {
             Debug.LogWarning("La taille du countour initiale est plus grand que la taille quand il est regard�");
@@ -38,15 +39,23 @@ public class InteractableObject : MonoBehaviour, IInteractable
 
     public void Looking() {
         Debug.Log("Looking");
-        Material.SetFloat("_OutlineThickness", ThiknessLooking);
-        Material.SetColor("_OutlineColor", ColorLooking);
+        foreach(UnityEngine.Material material in render.materials)
+        {
+            material.SetFloat("_OutlineThickness", ThiknessLooking);
+            material.SetColor("_OutlineColor", ColorLooking);
+
+        }
         return;
+
     }
     public void StopLooking()
     {
         Debug.Log("StopedLooking");
-        Material.SetFloat("_OutlineThickness", InitialThickness);
-        Material.SetColor("_OutlineColor", InitialColor);
+        foreach (UnityEngine.Material material in render.materials)
+        {
+            material.SetFloat("_OutlineThickness", InitialThickness);
+            material.SetColor("_OutlineColor", InitialColor);
+        }
         return;
     }
     public void Interact() {
