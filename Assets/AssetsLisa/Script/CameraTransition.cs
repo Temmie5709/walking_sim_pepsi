@@ -9,10 +9,15 @@ public class CameraTransition : MonoBehaviour
     public GameObject cameraFolder; // Dossier contenant les caméras de transition
     public float transitionDuration = 2f; // Durée de la transition
     public Narration Dialogue;
+    public TaskManager tache;
 
     void Start()
     {
         StartCoroutine(HandleCameraTransition());
+        tache.setTaskText("Faire du code");
+        tache.CreateTask(1);
+        tache.setTaskText("Récupérer le document dans le classeur");
+        tache.CreateTask(2);
     }
 
     IEnumerator HandleCameraTransition()
