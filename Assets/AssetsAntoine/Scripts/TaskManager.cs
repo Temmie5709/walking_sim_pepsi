@@ -18,8 +18,7 @@ public class TaskManager : MonoBehaviour
         {
             ID = id;
             Text = text;
-            TaskObject = Instantiate(TaskPrefab);
-            TaskObject.transform.SetParent(parent.transform);
+            TaskObject = Instantiate(TaskPrefab,parent.transform);
             TaskObject.GetComponent<TextMeshProUGUI>().SetText(text);
         }
 
