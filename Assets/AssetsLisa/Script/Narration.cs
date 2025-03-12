@@ -29,6 +29,7 @@ public class NamedDialogue
 public class Narration : MonoBehaviour
 {
     public GameObject dialogueContainer; // Empty qui contient toute l'UI
+    public GameObject Task; // Empty qui contient toute l'UI
     public TextMeshProUGUI textComponent;
     public TextMeshProUGUI nameComponent;
     public float textSpeed = 0.05f;
@@ -103,7 +104,7 @@ public class Narration : MonoBehaviour
             currentDialogue = namedDialogue;
             textIndex = 0;
             dialogueContainer.SetActive(true); // Active l'UI quand un dialogue commence
-
+            Task.SetActive(false);
             // Désactiver les contrôles du joueur pendant le dialogue
             if (playerMove != null)
             {
@@ -130,6 +131,7 @@ public class Narration : MonoBehaviour
             else
             {
                 dialogueContainer.SetActive(false); // Désactive si aucun dialogue
+                Task.SetActive(true);
             }
         }
     }
@@ -163,6 +165,7 @@ public class Narration : MonoBehaviour
             }
 
             dialogueContainer.SetActive(false); // Désactive l'UI à la fin des dialogues
+            Task.SetActive(true);
         }
     }
 

@@ -678,6 +678,18 @@ MonoBehaviour:
           m_StringArgument: "\xC9teindre la hotte"
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2042896571}
+        m_TargetAssemblyTypeName: End, Assembly-CSharp
+        m_MethodName: DoVITATask
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: "\xC9teindre la hotte"
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &106635640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1153,6 +1165,18 @@ MonoBehaviour:
       - m_Target: {fileID: 2042896571}
         m_TargetAssemblyTypeName: End, Assembly-CSharp
         m_MethodName: DoPlayerTask
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2042896571}
+        m_TargetAssemblyTypeName: End, Assembly-CSharp
+        m_MethodName: SacDo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1782,6 +1806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueContainer: {fileID: 967430561}
+  Task: {fileID: 1431278973}
   textComponent: {fileID: 1935754587}
   nameComponent: {fileID: 1977621883}
   textSpeed: 0.03
@@ -1982,6 +2007,43 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 1
             m_CallState: 2
+  - name: egg
+    dialogues:
+    - character: 0
+      line: "Arr\xEAte de faire les t\xE2ches que je te donne, bordel !"
+      lineEvent:
+        m_PersistentCalls:
+          m_Calls: []
+  - name: 3task
+    dialogues:
+    - character: 1
+      line: "Il faut que je trouve un moyen de sortir, mon p\xE8re a besoin de moi. "
+      lineEvent:
+        m_PersistentCalls:
+          m_Calls: []
+  - name: 6task
+    dialogues:
+    - character: 1
+      line: "Je ne pense pas que suivre les t\xE2ches que me donne VITA m\u2019aidera
+        \xE0 sortir de l\xE0. "
+      lineEvent:
+        m_PersistentCalls:
+          m_Calls: []
+  - name: miroirdo
+    dialogues:
+    - character: 0
+      line: "Vous devriez reprendre les t\xE2ches que je vous ai indiqu\xE9es. "
+      lineEvent:
+        m_PersistentCalls:
+          m_Calls: []
+  - name: sacdo
+    dialogues:
+    - character: 0
+      line: "Votre liste de t\xE2ches avance moins vite que d'habitude, que faites-vous
+        ? "
+      lineEvent:
+        m_PersistentCalls:
+          m_Calls: []
   playerMove: {fileID: 727801602}
   cameraController: {fileID: 2033121186}
 --- !u!1001 &378905992
@@ -2866,7 +2928,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &608127273
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3342,6 +3404,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 'Commander de la nourriture '
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2042896571}
+        m_TargetAssemblyTypeName: End, Assembly-CSharp
+        m_MethodName: DoVITATask
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5750,6 +5824,18 @@ MonoBehaviour:
           m_StringArgument: miroir
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2042896571}
+        m_TargetAssemblyTypeName: End, Assembly-CSharp
+        m_MethodName: MiroirDo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: miroir
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1260768257 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7933355312105862147, guid: 61d7cca0f5b4ab34e80a31a283ae4f1d,
@@ -6921,6 +7007,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1427897144}
   m_Mesh: {fileID: -480159751484832315, guid: 61d7cca0f5b4ab34e80a31a283ae4f1d, type: 3}
+--- !u!1 &1431278973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4293482086808497333, guid: 00d9f75de4c2c6f49bc188f4b021b5f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1619694826}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1471784305 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6946452834586548108, guid: d19c77f60b8b38443b3a2168dd69b3ce,
@@ -7260,6 +7352,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 'Faire du code '
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2042896571}
+        m_TargetAssemblyTypeName: End, Assembly-CSharp
+        m_MethodName: DoVITATask
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8162,6 +8266,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 'Se laver les mains '
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2042896571}
+        m_TargetAssemblyTypeName: End, Assembly-CSharp
+        m_MethodName: DoVITATask
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9552,6 +9668,18 @@ MonoBehaviour:
           m_StringArgument: 'Se brosser les dents '
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2042896571}
+        m_TargetAssemblyTypeName: End, Assembly-CSharp
+        m_MethodName: DoVITATask
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 'Se brosser les dents '
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!64 &1793452394
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9635,7 +9763,7 @@ PrefabInstance:
     - target: {fileID: 262743210099120704, guid: f3722aa3317fbf94b9b33d7a740b5924,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 389193843481744570, guid: f3722aa3317fbf94b9b33d7a740b5924,
         type: 3}
@@ -10257,6 +10385,18 @@ MonoBehaviour:
           m_StringArgument: 'Arroser la plante '
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2042896571}
+        m_TargetAssemblyTypeName: End, Assembly-CSharp
+        m_MethodName: DoVITATask
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 'Arroser la plante '
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!64 &1862231983
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10385,6 +10525,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: "R\xE9cup\xE9rer le document dans le classeur "
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2042896571}
+        m_TargetAssemblyTypeName: End, Assembly-CSharp
+        m_MethodName: DoVITATask
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10624,7 +10776,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1619694826}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1431278973}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f43d77b7869dc454582ef57d803774b1, type: 3}
@@ -11515,6 +11667,18 @@ MonoBehaviour:
           m_StringArgument: "R\xE9pondre aux mails "
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2042896571}
+        m_TargetAssemblyTypeName: End, Assembly-CSharp
+        m_MethodName: DoVITATask
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: "R\xE9pondre aux mails "
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!64 &2015815668
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -11835,6 +11999,7 @@ MonoBehaviour:
   cameraFolder: {fileID: 885524741}
   transitionDuration: 2
   Dialogue: {fileID: 373171221}
+  tache: {fileID: 1921456232}
 --- !u!4 &2042896570
 Transform:
   m_ObjectHideFlags: 0
@@ -11932,7 +12097,8 @@ PrefabInstance:
       value: food
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -5295305184311258000, guid: 7837c07f39eb615419563c7f42127414, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7837c07f39eb615419563c7f42127414, type: 3}
