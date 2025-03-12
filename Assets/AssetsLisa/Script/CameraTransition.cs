@@ -3,32 +3,36 @@ using UnityEngine;
 
 public class CameraTransition : MonoBehaviour
 {
-    public Camera mainCamera; // La caméra principale
-    public Camera camera1; // Première caméra
-    public Camera camera2; // Deuxième caméra
-    public GameObject cameraFolder; // Dossier contenant les caméras de transition
-    public float transitionDuration = 2f; // Durée de la transition
+    public Camera mainCamera; // La camï¿½ra principale
+    public Camera camera1; // Premiï¿½re camï¿½ra
+    public Camera camera2; // Deuxiï¿½me camï¿½ra
+    public GameObject cameraFolder; // Dossier contenant les camï¿½ras de transition
+    public float transitionDuration = 2f; // Durï¿½e de la transition
     public Narration Dialogue;
     public TaskManager tache;
+    public AudioSource Notif;
+    public AudioSource Clavier;
 
     void Start()
     {
         StartCoroutine(HandleCameraTransition());
         tache.setTaskText("Faire du code");
         tache.CreateTask(1);
-        tache.setTaskText("Récupérer le document dans le classeur");
+        tache.setTaskText("RÃ©cupÃ©rer le document dans le classeur");
         tache.CreateTask(2);
     }
 
     IEnumerator HandleCameraTransition()
     {
-        // Activer la première caméra et désactiver la principale
+        // Activer la premiï¿½re camï¿½ra et dï¿½sactiver la principale
         mainCamera.gameObject.SetActive(false);
         camera1.gameObject.SetActive(true);
-
-        yield return new WaitForSeconds(10f);
-
-        // Transition vers la deuxième caméra
+        Clavier.Play();
+        yield return new WaitForSeconds(9f);
+        Clavier.Stop();
+        Notif.Play();
+        yield return new WaitForSeconds(1f);
+        // Transition vers la deuxiï¿½me camï¿½ra
         yield return StartCoroutine(TransitionCameras(camera1, camera2));
 
         yield return new WaitForSeconds(3f);
@@ -36,10 +40,10 @@ public class CameraTransition : MonoBehaviour
         // Lancer le dialogue
         Dialogue.ChangeDialogueSetByName("phone");
 
-        // Transition vers la caméra principale
+        // Transition vers la camï¿½ra principale
         yield return StartCoroutine(TransitionCameras(camera2, mainCamera));
 
-        // Désactiver le dossier contenant les caméras de transition
+        // Dï¿½sactiver le dossier contenant les camï¿½ras de transition
         cameraFolder.SetActive(false);
     }
 
