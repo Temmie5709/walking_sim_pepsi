@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject menuPanel;
     public Text gameTitleText;        // Texte du nom du jeu
 
-    private string originalGameTitle = "Walking Simulator"; // Remplacer par le nom de votre jeu
+    private string originalGameTitle = "Refuge"; // Remplacer par le nom de votre jeu
     private Resolution[] resolutions; // Liste des résolutions disponibles
 
     void Start()
