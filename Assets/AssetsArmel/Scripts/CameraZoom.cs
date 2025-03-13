@@ -11,6 +11,9 @@ public class CameraZoom : MonoBehaviour
 
     private bool isZooming = false;        // Pour détecter si le zoom est en cours
 
+    public float volumeFadeSpeed = 0.5f;   // Vitesse à laquelle le volume diminue
+    public AudioSource musiqueDeFond;     // Référence à la musique de fond
+
     // Update appelé chaque frame
     void Update()
     {
@@ -19,6 +22,12 @@ public class CameraZoom : MonoBehaviour
             // Interpolation de la position de la caméra vers la cible
             transform.position = Vector3.Lerp(transform.position, targetCameraPosition.position, Time.deltaTime * zoomSpeed);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetCameraPosition.rotation, Time.deltaTime * zoomSpeed);
+
+            // Faire baisser progressivement le volume de la musique de fond
+            if (musiqueDeFond != null && musiqueDeFond.volume > 0f)
+            {
+                musiqueDeFond.volume = Mathf.Lerp(musiqueDeFond.volume, 0f, Time.deltaTime * volumeFadeSpeed);
+            }
 
             // Si la caméra est suffisamment proche de la cible, on arrête le zoom
             if (Vector3.Distance(transform.position, targetCameraPosition.position) < 0.1f)
