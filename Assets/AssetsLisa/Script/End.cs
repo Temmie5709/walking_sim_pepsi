@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 public class End : MonoBehaviour
 {
     int taskVita = 0;
-    public int taskPlay = 0;
+    int taskPlay = 0;
     public Narration Dialogue; // Déclaration du dialogue
     public Camera mainCamera;
     public Camera targetCamera;

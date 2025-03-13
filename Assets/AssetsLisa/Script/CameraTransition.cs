@@ -1,20 +1,25 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;  // Assurez-vous d'inclure cette directive pour l'UI
 
 public class CameraTransition : MonoBehaviour
 {
-    public Camera mainCamera; // La cam�ra principale
-    public Camera camera1; // Premi�re cam�ra
-    public Camera camera2; // Deuxi�me cam�ra
-    public GameObject cameraFolder; // Dossier contenant les cam�ras de transition
-    public float transitionDuration = 2f; // Dur�e de la transition
+    public Camera mainCamera; // La caméra principale
+    public Camera camera1; // Première caméra
+    public Camera camera2; // Deuxième caméra
+    public GameObject cameraFolder; // Dossier contenant les caméras de transition
+    public float transitionDuration = 2f; // Durée de la transition
     public Narration Dialogue;
     public TaskManager tache;
     public AudioSource Notif;
     public AudioSource Clavier;
 
+    public Image blackScreen; // L'image noire utilisée pour le fondu
+    public float fadeDuration = 2f; // Durée du fondu (2 secondes)
+
     void Start()
     {
+        // Démarrer le fondu au noir au début
         StartCoroutine(HandleCameraTransition());
         tache.setTaskText("Faire du code");
         tache.CreateTask(1);
@@ -24,15 +29,27 @@ public class CameraTransition : MonoBehaviour
 
     IEnumerator HandleCameraTransition()
     {
-        // Activer la premi�re cam�ra et d�sactiver la principale
+        // Activer la première caméra et désactiver la principale
         mainCamera.gameObject.SetActive(false);
         camera1.gameObject.SetActive(true);
         Clavier.Play();
+        // Faire le fondu du noir à la transparence
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            blackScreen.color = new Color(0, 0, 0, Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration));
+            yield return null;
+        }
+
+        // Désactiver l'image noire après le fondu
+        blackScreen.gameObject.SetActive(false);
         yield return new WaitForSeconds(9f);
         Clavier.Stop();
         Notif.Play();
         yield return new WaitForSeconds(1f);
-        // Transition vers la deuxi�me cam�ra
+
+        // Transition vers la deuxième caméra
         yield return StartCoroutine(TransitionCameras(camera1, camera2));
 
         yield return new WaitForSeconds(3f);
@@ -40,10 +57,10 @@ public class CameraTransition : MonoBehaviour
         // Lancer le dialogue
         Dialogue.ChangeDialogueSetByName("phone");
 
-        // Transition vers la cam�ra principale
+        // Transition vers la caméra principale
         yield return StartCoroutine(TransitionCameras(camera2, mainCamera));
 
-        // D�sactiver le dossier contenant les cam�ras de transition
+        // Désactiver le dossier contenant les caméras de transition
         cameraFolder.SetActive(false);
     }
 
