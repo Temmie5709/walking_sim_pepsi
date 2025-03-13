@@ -11,7 +11,7 @@ public class DoorTrigger : MonoBehaviour
     public GameObject player; // Référence au joueur
     public MonoBehaviour playerMovementScript; // Script de mouvement du joueur à désactiver
     public float fadeDuration = 2f;
-    public float quitDelay = 30f;
+    public float quitDelay = 10f;
     public Image X;
     private bool isTriggered = false;
 
