@@ -2059,7 +2059,7 @@ MonoBehaviour:
   textSpeed: 0.02
   continueIcon: {fileID: 625816391}
   vitaSound: {fileID: 8300000, guid: 6cb74dc6ca1198a4481b995b98a67fe0, type: 3}
-  joueurSound: {fileID: 8300000, guid: 969be66f623e520469887fcec7f38c58, type: 3}
+  joueurSound: {fileID: 8300000, guid: 861f8439431b881488e7f29509689178, type: 3}
   typeSoundVolume: 0.3
   namedDialogues:
   - name: phone
@@ -2167,7 +2167,19 @@ MonoBehaviour:
       line: "VITA, il est temps que je sorte, il faut que je rejoigne mon p\xE8re."
       lineEvent:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 571048066}
+            m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+            m_MethodName: Stop
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
     - character: 0
       line: "Je suis d\xE9sol\xE9, je ne peux pas vous laisser sortir."
       lineEvent:
@@ -3101,7 +3113,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5fa451e614f98f14db537b8d380fd52b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.501
+  m_Volume: 0.28
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -12318,9 +12330,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Refuge
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8252e0d1ed4f95945a2c615648928540, type: 2}
-  m_sharedMaterial: {fileID: -6331268972080830452, guid: 8252e0d1ed4f95945a2c615648928540,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -13137,7 +13148,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Contenu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8252e0d1ed4f95945a2c615648928540, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5c666e460550fe1439cd11edd15458d8, type: 2}
   m_sharedMaterial: {fileID: -6331268972080830452, guid: 8252e0d1ed4f95945a2c615648928540,
     type: 2}
   m_fontSharedMaterials: []
@@ -15445,7 +15456,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 154213301f355404e8083a59a5238727, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.466
   m_Pitch: 1
   Loop: 1
   Mute: 0
