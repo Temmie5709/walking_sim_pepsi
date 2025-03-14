@@ -9,6 +9,8 @@ public class SlideshowLisa : MonoBehaviour
     [SerializeField] private List<Sprite> images = new List<Sprite>();
     [SerializeField] private float fadeDuration = 0.5f;
     [SerializeField] private float slideDuration = 2f; // Temps entre chaque image
+    [SerializeField] private AudioSource sonJeu;
+    [SerializeField] private AudioSource sonFlash;
 
     private int currentIndex = 0;
 
@@ -29,6 +31,10 @@ public class SlideshowLisa : MonoBehaviour
             return;
         }
 
+        // Arrêter SonJeu et démarrer SonFlash
+        if (sonJeu.isPlaying) sonJeu.Pause();
+        if (!sonFlash.isPlaying) sonFlash.Play();
+
         displayImage.gameObject.SetActive(true);
         currentIndex = 0;
         displayImage.sprite = images[currentIndex];
@@ -45,7 +51,13 @@ public class SlideshowLisa : MonoBehaviour
         }
 
         yield return new WaitForSeconds(slideDuration);
-        StartCoroutine(FadeImage(1f, 0f, fadeDuration, () => displayImage.gameObject.SetActive(false)));
+        StartCoroutine(FadeImage(1f, 0f, fadeDuration, () =>
+        {
+            displayImage.gameObject.SetActive(false);
+            // Reprendre SonJeu et arrêter SonFlash
+            if (!sonJeu.isPlaying) sonJeu.Play();
+            if (sonFlash.isPlaying) sonFlash.Stop();
+        }));
     }
 
     void NextImage()

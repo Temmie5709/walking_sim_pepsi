@@ -2,20 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using TMPro; // Importation de TextMeshPro
 
 public class End : MonoBehaviour
 {
     int taskVita = 0;
     int taskPlay = 0;
-    public Narration Dialogue; // Déclaration du dialogue
+    public Narration Dialogue;
     public Camera mainCamera;
     public Camera targetCamera;
-    private bool hasTriggeredEnd = false; // Vérifie si la fin a déjà été déclenchée
+    public TextMeshProUGUI taskProgressText; // Référence au texte UI TextMeshPro
+    public AudioSource Complite;
+
+    private bool hasTriggeredEnd = false;
     private bool hasTriggeredEgg = false;
     private bool hasTriggeredTask3 = false;
     private bool hasTriggeredTask6 = false;
-    private bool hasTriggeredMiroirDo = false; // Vérifie si le dialogue miroirdo a été lancé
-    private bool hasTriggeredSacDo = false;   // Vérifie si le dialogue sacdo a été lancé
+    private bool hasTriggeredMiroirDo = false;
+    private bool hasTriggeredSacDo = false;
+
+    void Start()
+    {
+        UpdateTaskProgressText(); // Initialisation de l'affichage
+    }
 
     public void DoVITATask()
     {
@@ -25,6 +34,16 @@ public class End : MonoBehaviour
     public void DoPlayerTask()
     {
         taskPlay++;
+        Complite.Play();
+        UpdateTaskProgressText(); // Met à jour l'affichage après incrémentation
+    }
+
+    void UpdateTaskProgressText()
+    {
+        if (taskProgressText != null)
+        {
+            taskProgressText.text = taskPlay + "/12";
+        }
     }
 
     void SwitchCamera()
@@ -39,7 +58,7 @@ public class End : MonoBehaviour
     IEnumerator TriggerEndSequence()
     {
         hasTriggeredEnd = true;
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(10);
         SwitchCamera();
         Dialogue.ChangeDialogueSetByName("fin");
     }
@@ -78,7 +97,7 @@ public class End : MonoBehaviour
 
     public void MiroirDo()
     {
-        if (!hasTriggeredMiroirDo) // Vérifie si la séquence n'a pas encore été jouée
+        if (!hasTriggeredMiroirDo)
         {
             hasTriggeredMiroirDo = true;
             StartCoroutine(TriggerMiroirDo());
@@ -87,7 +106,7 @@ public class End : MonoBehaviour
 
     public void SacDo()
     {
-        if (!hasTriggeredSacDo) // Vérifie si la séquence n'a pas encore été jouée
+        if (!hasTriggeredSacDo)
         {
             hasTriggeredSacDo = true;
             StartCoroutine(TriggerSacDo());
