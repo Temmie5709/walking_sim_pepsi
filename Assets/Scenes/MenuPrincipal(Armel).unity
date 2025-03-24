@@ -3391,15 +3391,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseInputs:
   - inputName: Avancer
-    key: 119
+    key: 87
   - inputName: Gauche
-    key: 97
+    key: 65
   - inputName: Droite
-    key: 100
+    key: 68
   - inputName: Reculer
-    key: 115
+    key: 83
   - inputName: Interagir
-    key: 102
+    key: 70
   inputTexts:
   - {fileID: 1499214342}
   - {fileID: 461180090}

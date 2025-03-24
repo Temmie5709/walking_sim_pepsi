@@ -22,7 +22,13 @@ public class InputBinding : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Initialisation des entrées de base dans le dictionnaire
+        InitializeInputs();
+        UpdateUI();
+    }
+
+    // Initialiser les entrées
+    private void InitializeInputs()
+    {
         foreach (var _input in baseInputs)
         {
             // Vérifier si une touche est déjà sauvegardée dans PlayerPrefs, sinon utiliser la touche par défaut
@@ -33,14 +39,12 @@ public class InputBinding : MonoBehaviour
             else
             {
                 inputsDictionary.Add(_input.Name, _input.Key); // Utiliser la touche par défaut
+                PlayerPrefs.SetString(_input.Name, _input.Key.ToString()); // Sauvegarder la touche par défaut si aucune n'existe
             }
         }
 
         // Cacher le message au démarrage
         messageText.gameObject.SetActive(false);
-
-        // Afficher les touches par défaut dans l'UI
-        UpdateUI();
     }
 
     // Update is called once per frame
@@ -109,7 +113,7 @@ public class InputBinding : MonoBehaviour
                 Vector3 buttonPosition = buttonRectTransform.position;
 
                 // Ajuster la position du message (ici, on le décale de 100 unités à droite du bouton)
-                messageText.rectTransform.position = new Vector3(buttonPosition.x+300 + buttonRectTransform.rect.width + 10, buttonPosition.y, buttonPosition.z);
+                messageText.rectTransform.position = new Vector3(buttonPosition.x + 300 + buttonRectTransform.rect.width + 10, buttonPosition.y, buttonPosition.z);
                 break;
             }
         }
